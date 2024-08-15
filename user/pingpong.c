@@ -23,19 +23,22 @@ main(int argc, char *argv[])
 
   if (pid > 0){ // positive for parent
     write(fd1[1], "ping", 5);
+    close(fd1[1]);
     wait((int *)0);
+
     read(fd2[0], buf, MSGSIZE);
+    close(fd2[0]);
+
     fprintf(1, "%d: received %s\n", getpid(), buf);
   } else { // 0 for child
     read(fd1[0], buf, MSGSIZE);
-    fprintf(1, "%d: received %s\n", getpid(), buf);
-    write(fd2[1], "pong", 5);
-  }
+    close(fd1[0]);
 
-  close(fd1[0]);
-  close(fd1[1]);
-  close(fd2[0]);
-  close(fd2[1]);
+    fprintf(1, "%d: received %s\n", getpid(), buf);
+    
+    write(fd2[1], "pong", 5);
+    close(fd2[1]);
+  }
 
   exit(0);
 }

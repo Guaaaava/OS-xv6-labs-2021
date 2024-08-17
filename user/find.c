@@ -53,11 +53,12 @@ find(char *path, char *target)
     return;
   }
 
+  if (strcmp(fmtname(path), target) == 0){
+    printf("%s\n", path);
+  }
+
   switch(st.type){
     case T_FILE:
-      if (strcmp(fmtname(path), target) == 0){
-        printf("%s\n", path);
-      }
       break;
 
     case T_DIR:

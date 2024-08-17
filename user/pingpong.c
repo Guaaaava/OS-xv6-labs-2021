@@ -29,12 +29,12 @@ main(int argc, char *argv[])
     read(fd2[0], buf, MSGSIZE);
     close(fd2[0]);
 
-    fprintf(1, "%d: received %s\n", getpid(), buf);
+    printf("%d: received %s\n", getpid(), buf);
   } else { // 0 for child
     read(fd1[0], buf, MSGSIZE);
     close(fd1[0]);
 
-    fprintf(1, "%d: received %s\n", getpid(), buf);
+    printf("%d: received %s\n", getpid(), buf);
     
     write(fd2[1], "pong", 5);
     close(fd2[1]);

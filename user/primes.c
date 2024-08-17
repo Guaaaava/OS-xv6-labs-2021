@@ -19,7 +19,7 @@ void prime(int pipe_read, int pipe_write){ // recursive
   if (val == 0) // no more primes
     exit(0);
 
-  fprintf(1, "prime %d\n", val);
+  printf("prime %d\n", val);
   nums[val] = ZERO; // set "ZERO" after printed
 
   for (int i = 0; i < MSGSIZE; i ++){

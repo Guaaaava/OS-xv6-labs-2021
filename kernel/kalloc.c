@@ -58,7 +58,7 @@ page_index(uint64 pa)
   pa = PGROUNDDOWN(pa);
   int res = (pa - (uint64)kmem.end_) / PGSIZE;
   if (res < 0 || res >= kmem.page_cnt){
-    panic("page_index illegal");
+    panic("page_index illegal\n");
   }
   return res;
 }
@@ -140,7 +140,7 @@ kalloc(void)
 
   if(r) {
     memset((char*)r, 5, PGSIZE); // fill with junk
-    incr((void *)r);
+    incr(r);
   }
 
   return (void*)r;

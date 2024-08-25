@@ -467,7 +467,7 @@ cow_alloc(pagetable_t pagetable, uint64 va)
   va = PGROUNDDOWN(va); // Rounds down va to the nearest page boundary
   pte_t *pte = walk(pagetable, va, 0);
   uint64 pa = PTE2PA(*pte);
-  int flag = PTE_FLAGS(*pte);
+  uint flag = PTE_FLAGS(*pte);
 
   char *mem = kalloc();
   if (mem == 0)

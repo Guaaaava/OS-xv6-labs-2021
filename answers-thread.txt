@@ -1,0 +1,12 @@
+[Assuming that keys k1、k2 belong to the same bucket]
+
+thread 1: Attemp to set k1
+thread 1: Found that k1 does not exist，try inserting k1 at the end of the bucket
+--- Switch the scheduler to thread 2
+thread 2: Attemp to set k2
+thread 2: Found that k2 does not exist，try inserting k2 at the end of the bucket
+thread 2: Assign entry and insert k2 at the end of the bucket
+--- Switch the scheduler back to thread 1
+thread 1: Assign entry without realizing the existence of k2, insert k1 at what it considers to be the "end of the bucket" (actually where k2 is located)
+
+[K1 was inserted, but due to being overwritten by k1, k2 disappeared from the bucket, causing key value loss]

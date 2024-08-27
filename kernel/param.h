@@ -12,4 +12,6 @@
 #define FSSIZE       1000  // size of file system in blocks
 #define MAXPATH      128   // maximum file path name
 
-#define LOCK_NAME_LEN 16  // max len of lock name
+#define LOCK_NAME_LEN 20  // max len of lock name
+
+#define NBUCKET 13
